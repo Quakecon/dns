@@ -1,9 +1,15 @@
 #!/bin/bash
 
-# Copy in the config
-cp ./nsd.conf /etc/nsd/nsd.conf
-cp zones/* /etc/nsd/zones
+if [ "$GIT_DIR"x == "x" ]; then
+    GIT_DIR=/home/qcadmin/dns/.git
+fi
 
+WORKDIR=$GIT_DIR/../
+
+# Copy in the config
+cp $WORKDIR/nsd.conf.master /etc/nsd/nsd.conf
+cp $WORKDIR/secret.keys /etc/nsd
+cp -r $WORKDIR/zones /etc/nsd
 
 # Reload the process
 nsd-control reload
