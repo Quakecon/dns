@@ -1,7 +1,10 @@
 #!/bin/bash
 
+INITIAL=0
+
 if [ "$GIT_DIR"x == "x" ]; then
     GIT_DIR=/home/qcadmin/dns/.git
+    INITIAL=1
 fi
 
 WORKDIR=$GIT_DIR/../
@@ -11,4 +14,6 @@ cp $WORKDIR/nsd.conf.master /etc/nsd/nsd.conf
 cp -r $WORKDIR/zones /etc/nsd
 
 # Reload the process
-nsd-control reload
+if [ INITIAL -eq 0 ]; then
+    nsd-control reload
+fi
