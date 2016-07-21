@@ -137,7 +137,7 @@ remote-control:
 	# nsd-control certificate file.
 	# control-cert-file: "/etc/nsd/nsd_control.pem"
 
-include: secret.keys
+include: /etc/nsd/secret.keys
 
 pattern:
 	name: "qcbase"
