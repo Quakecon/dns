@@ -16,7 +16,7 @@ server:
 	# ip-address: 1.2.3.4
 	# ip-address: 1.2.3.4@5678
 	# ip-address: 12fe::8ef0
-	ip-address: 127.0.0.1
+	# ip-address: 127.0.0.1
 	
 	# Allow binding to non local addresses. Default no.
 	# ip-transparent: no
@@ -67,7 +67,7 @@ server:
 
 	# statistics are produced every number of seconds. Prints to log.
 	# Default is 0, meaning no statistics are produced.
-	statistics: 3600
+	statistics: 60
 
 	# Number of seconds between reloads triggered by xfrd.
 	# xfrd-reload-timeout: 1
