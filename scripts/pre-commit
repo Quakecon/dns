@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Fail the commit if any of the return codes is non-zero
+set -e
+
+# Ensure the config file isn't hosed
+nsd-checkconf nsd.conf
+
+# Ditto for the zonefiles
+for file in $( ls zones/* ); do
+    nsd-checkzone $(echo $file | sed -e 's/zones\/db.//') $file
+done
