@@ -4,7 +4,7 @@
 set -e
 
 # Ensure the config file isn't hosed
-nsd-checkconf nsd.conf
+nsd-checkconf nsd.conf.master
 
 # Ditto for the zonefiles
 for file in $( ls zones/* ); do

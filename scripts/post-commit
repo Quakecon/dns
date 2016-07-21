@@ -8,7 +8,6 @@ WORKDIR=$GIT_DIR/../
 
 # Copy in the config
 cp $WORKDIR/nsd.conf.master /etc/nsd/nsd.conf
-cp $WORKDIR/secret.keys /etc/nsd
 cp -r $WORKDIR/zones /etc/nsd
 
 # Reload the process
