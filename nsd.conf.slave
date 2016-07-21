@@ -143,8 +143,8 @@ pattern:
 	name: "qcbase"
 	zonefile: "db.%s"
 	notify-retry: 5
-	allow-notify: 172.16.1.2 qcon
-        request-xfr: 172.16.1.2 qcon
+	allow-notify: 172.16.1.105 qcon
+        request-xfr: 172.16.1.105 qcon
 
 zone:
  	name: "at.quakecon.org."

@@ -15,5 +15,6 @@ cp -r $WORKDIR/zones /etc/nsd
 
 # Reload the process
 if [ INITIAL -eq 0 ]; then
+    nsd-control reconfig
     nsd-control reload
 fi
