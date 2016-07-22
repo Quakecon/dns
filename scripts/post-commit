@@ -1,9 +1,6 @@
 #!/bin/bash
 
-set -e
 set -u
-
-ZONES=(at.quakecon.org quakeconcdn.org 172.in-addr.arpa)
 
 # Update Master
 cp nsd.conf.master /etc/nsd/nsd.conf
@@ -16,10 +13,7 @@ for SECONDARY in 172.16.1.102 172.16.1.103 172.16.1.104; do
     ssh qcadmin@${SECONDARY} nsd-control reconfig
     
     scp unbound.conf qcadmin@${SECONDARY}:/etc/unbound/unbound.conf
-    ssh qcadmin@${SECONDARY} unbound-control reconfig
-    for ZONE in $ZONES; do
-	ssh qcadmin@${SECONDARY} unbound-control flush_zone $ZONE
-    done
+    ssh qcadmin@${SECONDARY} unbound-control reload
 done
 
 
