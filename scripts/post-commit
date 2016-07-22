@@ -1,20 +1,21 @@
 #!/bin/bash
 
-INITIAL=0
+set -e
+set -u
 
-if [ "$GIT_DIR"x == "x" ]; then
-    GIT_DIR=/home/qcadmin/dns/.git
-    INITIAL=1
-fi
+ZONES=(at.quakecon.org quakeconcdn.org 172.in-addr.arpa)
 
-WORKDIR=$GIT_DIR/../
+# Update Master
+cp nsd.conf.master /etc/nsd/nsd.conf
+cp -r zones /etc/nsd
 
-# Copy in the config
-cp $WORKDIR/nsd.conf.master /etc/nsd/nsd.conf
-cp -r $WORKDIR/zones /etc/nsd
-
-# Reload the process
-if [ $INITIAL -eq 0 ]; then
-    nsd-control reconfig
-    nsd-control reload
-fi
+for SECONDARY in 172.16.1.102 172.16.1.103 172.16.1.104; do
+    scp nsd.conf.slave qcadmin@${SECONDARY}:/etc/nsd/nsd.conf
+    ssh qcadmin@${SECONDARY} nsd-control reconfig
+    
+    scp unbound.conf qcadmin@${SECONDARY}:/etc/unbound/unbound.conf
+    ssh qcadmin@${SECONDARY} unbound-control reconfig
+    for ZONE in $ZONES; do
+	ssh qcadmin@${SECONDARY} unbound-control flush_zone $ZONE
+    done
+done

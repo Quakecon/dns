@@ -80,7 +80,7 @@ server:
 	
 	# write changed zonefiles to disk, every N seconds.
 	# default is 0(disabled) or 3600(if database is "").
-	# zonefiles-write: 3600
+	zonefiles-write: 300
 
 	# RRLconfig
 	# Response Rate Limiting, size of the hashtable. Default 1000000.
