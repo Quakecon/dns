@@ -145,6 +145,8 @@ pattern:
 	notify-retry: 5
 	allow-notify: 172.16.1.100 qcon
         request-xfr: 172.16.1.100 qcon
+	allow-notify: 172.16.1.101 qcon
+        request-xfr: 172.16.1.101 qcon
 
 zone:
  	name: "at.quakecon.org."
