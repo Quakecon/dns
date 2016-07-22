@@ -1,6 +1,6 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.quakecon.org. (
-                     2016072202         ; Serial
+                     2016072203         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
