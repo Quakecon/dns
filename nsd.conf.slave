@@ -34,7 +34,7 @@ server:
 	port: 5353
 
 	# Verbosity level.
-	# verbosity: 0
+	verbosity: 2
 
 	# After binding socket, drop user privileges.
 	# can be a username, id or id.gid.
@@ -159,7 +159,7 @@ zone:
 	include-pattern: "qcbase"
 
 zone:
- 	name: "17.172.in_addr.arpa."
+ 	name: "17.172.in-addr.arpa."
 	include-pattern: "qcbase"
 
 zone:

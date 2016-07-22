@@ -33,7 +33,7 @@ server:
 	#port: 5353
 
 	# Verbosity level.
-	# verbosity: 0
+	verbosity: 2
 
 	# After binding socket, drop user privileges.
 	# can be a username, id or id.gid.
@@ -143,11 +143,11 @@ pattern:
 	zonefile: "db.%s"
 	notify-retry: 5
 	notify: 172.16.1.102@5353 qcon
-        provide-xfr: 172.16.1.102@5353 qcon
+        provide-xfr: 172.16.1.102 qcon
 	notify: 172.16.1.103@5353 qcon
-        provide-xfr: 172.16.1.103@5353 qcon
+        provide-xfr: 172.16.1.103 qcon
 	notify: 172.16.1.104@5353 qcon
-        provide-xfr: 172.16.1.104@5353 qcon
+        provide-xfr: 172.16.1.104 qcon
 
 zone:
  	name: "at.quakecon.org."
@@ -162,7 +162,7 @@ zone:
 	include-pattern: "qcbase"
 
 zone:
- 	name: "17.172.in_addr.arpa."
+ 	name: "17.172.in-addr.arpa."
 	include-pattern: "qcbase"
 
 zone:
