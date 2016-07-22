@@ -8,6 +8,8 @@ ZONES=(at.quakecon.org quakeconcdn.org 172.in-addr.arpa)
 # Update Master
 cp nsd.conf.master /etc/nsd/nsd.conf
 cp -r zones /etc/nsd
+nsd-control reconfig
+nsd-control reload
 
 for SECONDARY in 172.16.1.102 172.16.1.103 172.16.1.104; do
     scp nsd.conf.slave qcadmin@${SECONDARY}:/etc/nsd/nsd.conf
@@ -19,3 +21,5 @@ for SECONDARY in 172.16.1.102 172.16.1.103 172.16.1.104; do
 	ssh qcadmin@${SECONDARY} unbound-control flush_zone $ZONE
     done
 done
+
+
