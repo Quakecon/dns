@@ -142,7 +142,7 @@ pattern:
 	name: "qcbase"
 	zonefile: "db.%s"
 	notify-retry: 5
-	notify: 172.16.1.101@5353 qcon
+	notify: 172.16.1.101 qcon
         provide-xfr: 172.16.1.101 qcon
 
 zone:

@@ -1,19 +1,48 @@
 #!/bin/bash
 
 set -u
+set -e
+
+RECURSIVES=(172.16.1.102 172.16.1.103 172.16.1.104)
+SECONDS=(172.16.1.101)
 
 # Update Master
-cp nsd.conf.master /etc/nsd/nsd.conf
-cp -r zones /etc/nsd
-nsd-control reconfig
-nsd-control reload
+CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../nsd.conf.master | wc -l`
+if [ $CHANGED -gt 0 ]; then
+    echo "nsd.conf.master has changed, reconfig'ing the master"
+    cp nsd.conf.master /etc/nsd/nsd.conf
+    nsd-control reconfig
+fi
 
-for SECONDARY in 172.16.1.102 172.16.1.103 172.16.1.104; do
-    scp nsd.conf.slave qcadmin@${SECONDARY}:/etc/nsd/nsd.conf
-    ssh qcadmin@${SECONDARY} nsd-control reconfig
-    
-    scp unbound.conf qcadmin@${SECONDARY}:/etc/unbound/unbound.conf
-    ssh qcadmin@${SECONDARY} unbound-control reload
-done
+CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../nsd.conf.slave | wc -l`
+if [ $CHANGED -gt 0 ]; then
+    echo "nsd.conf.slave has changed, reloading the secondary auth resolvers"
+    for SECONDARY in $SECONDS; do
+	scp nsd.conf.slave qcadmin@${SECONDARY}:/etc/nsd/nsd.conf
+	ssh qcadmin@${SECONDARY} nsd-control reconfig
+    done
+fi
 
+CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../zones/db.* |wc -l`
+if [ $CHANGED -gt 0 ]; then
+    echo "Updating Changed Zones: "
+    for CHANGED_ZONE_FILE in `git diff HEAD@{1} --stat --name-only -- $GIT_DIR/../zones/db.*`; do
+	cp -r $CHANGED_ZONE_FILE /etc/nsd
+	ZONE_NAME=$(echo $CHANGED_ZONE_FILE | sed -e 's,zones/db.,,')
+	for RECURSIVE in $RECURSIVES; do
+		ssh $RECURSIVE unbound-control flush_zone $ZONE_NAME
+	done
+	echo $ZONE_NAME
+    done
+    nsd-control reload
+fi
+
+CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../unbound.conf | wc -l`
+if [ $CHANGED -gt 0 ]; then
+    echo "unbound.conf has changed, reloading the recursive resolvers"
+    for RECURSIVE in $RECURSIVES; do
+	scp unbound.conf qcadmin@${RECURSIVE}:/etc/unbound/unbound.conf
+	ssh qcadmin@${RECURSIVE} unbound-control reload
+    done
+fi
 
