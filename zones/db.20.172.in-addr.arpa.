@@ -6,6 +6,7 @@ $TTL 1800
                         2419200         ; Expire
                           10800 )       ; Negative Cache TTL
 ;
-        IN      NS      ns.at.quakecon.org.
+        IN      NS      core1.at.quakecon.org.
+        IN      NS      core2.at.quakecon.org.
 
 
