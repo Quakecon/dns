@@ -3,23 +3,24 @@
 set -u
 set -e
 
-RECURSIVES=(172.16.1.102 172.16.1.103 172.16.1.104)
-SECONDS=(172.16.1.101)
+RECURSIVES=("172.16.1.102" "172.16.1.103" "172.16.1.104")
+SECONDARIES=("172.16.1.101")
 
 # Update Master
 CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../nsd.conf.master | wc -l`
 if [ $CHANGED -gt 0 ]; then
-    echo "nsd.conf.master has changed, reconfig'ing the master"
     cp nsd.conf.master /etc/nsd/nsd.conf
-    nsd-control reconfig
+    output=`nsd-control reconfig`
+    echo "nsd.conf.master has changed, reconfig'ing the master: $output"
 fi
 
 CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../nsd.conf.slave | wc -l`
 if [ $CHANGED -gt 0 ]; then
     echo "nsd.conf.slave has changed, reloading the secondary auth resolvers"
-    for SECONDARY in $SECONDS; do
-	scp nsd.conf.slave qcadmin@${SECONDARY}:/etc/nsd/nsd.conf
-	ssh qcadmin@${SECONDARY} nsd-control reconfig
+    for SECONDARY in ${SECONDARIES[*]}; do
+	echo "Updating ${SECONDARY}"
+	output=`scp nsd.conf.slave qcadmin@${SECONDARY}:/etc/nsd/nsd.conf` || echo $output
+	output=`ssh qcadmin@${SECONDARY} nsd-control reconfig` || echo $output
     done
 fi
 
@@ -27,22 +28,27 @@ CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../zones/db.* |wc -l`
 if [ $CHANGED -gt 0 ]; then
     echo "Updating Changed Zones: "
     for CHANGED_ZONE_FILE in `git diff HEAD@{1} --stat --name-only -- $GIT_DIR/../zones/db.*`; do
-	cp -r $CHANGED_ZONE_FILE /etc/nsd
 	ZONE_NAME=$(echo $CHANGED_ZONE_FILE | sed -e 's,zones/db.,,')
-	for RECURSIVE in $RECURSIVES; do
-		ssh $RECURSIVE unbound-control flush_zone $ZONE_NAME
+	echo -e "\t$ZONE_NAME"
+	cp -r $CHANGED_ZONE_FILE /etc/nsd
+	echo "Flushing cache at recursives:"
+	for RECURSIVE in ${RECURSIVES[*]}; do
+	    echo -e "\t$RECURSIVE"
+	    output=`ssh $RECURSIVE unbound-control flush_zone $ZONE_NAME` || echo $output
 	done
-	echo $ZONE_NAME
+
     done
-    nsd-control reload
+    output=`nsd-control reload`
+    echo "Reloading nsd and notifying secondaries: $output"
 fi
 
 CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../unbound.conf | wc -l`
 if [ $CHANGED -gt 0 ]; then
     echo "unbound.conf has changed, reloading the recursive resolvers"
-    for RECURSIVE in $RECURSIVES; do
-	scp unbound.conf qcadmin@${RECURSIVE}:/etc/unbound/unbound.conf
-	ssh qcadmin@${RECURSIVE} unbound-control reload
+    for RECURSIVE in ${RECURSIVES[*]}; do
+	echo -e "\t$RECURSIVE"
+	output=`scp unbound.conf qcadmin@${RECURSIVE}:/etc/unbound/unbound.conf` || echo $output
+	output=`ssh qcadmin@${RECURSIVE} unbound-control reload` || echo $output
     done
 fi
 
