@@ -33,8 +33,8 @@ if [ $CHANGED -gt 0 ]; then
 	cp $CHANGED_ZONE_FILE /etc/nsd/zones
 	echo "Flushing cache at recursives:"
 	for RECURSIVE in ${RECURSIVES[*]}; do
-	    echo -e "\t$RECURSIVE"
 	    output=`ssh $RECURSIVE unbound-control flush_zone $ZONE_NAME` || echo $output
+	    echo -e "\t$RECURSIVE: $output"
 	done
 
     done
