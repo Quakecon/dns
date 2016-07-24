@@ -11,16 +11,16 @@ CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../nsd.conf.master | wc -l`
 if [ $CHANGED -gt 0 ]; then
     cp nsd.conf.master /etc/nsd/nsd.conf
     output=`nsd-control reconfig`
-    echo "nsd.conf.master has changed, reconfig'ing the master: $output"
+    echo -e "nsd.conf.master has changed, reconfig'ing the master: \n$output"
 fi
 
 CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../nsd.conf.slave | wc -l`
 if [ $CHANGED -gt 0 ]; then
     echo "nsd.conf.slave has changed, reloading the secondary auth resolvers"
     for SECONDARY in ${SECONDARIES[*]}; do
-	echo "Updating ${SECONDARY}"
 	output=`scp nsd.conf.slave qcadmin@${SECONDARY}:/etc/nsd/nsd.conf` || echo $output
 	output=`ssh qcadmin@${SECONDARY} nsd-control reconfig` || echo $output
+	echo "Updating ${SECONDARY}: $output"
     done
 fi
 
@@ -30,7 +30,7 @@ if [ $CHANGED -gt 0 ]; then
     for CHANGED_ZONE_FILE in `git diff HEAD@{1} --stat --name-only -- $GIT_DIR/../zones/db.*`; do
 	ZONE_NAME=$(echo $CHANGED_ZONE_FILE | sed -e 's,zones/db.,,')
 	echo -e "\t$ZONE_NAME"
-	cp -r $CHANGED_ZONE_FILE /etc/nsd
+	cp $CHANGED_ZONE_FILE /etc/nsd/zones
 	echo "Flushing cache at recursives:"
 	for RECURSIVE in ${RECURSIVES[*]}; do
 	    echo -e "\t$RECURSIVE"
