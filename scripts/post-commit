@@ -31,12 +31,11 @@ if [ $CHANGED -gt 0 ]; then
 	ZONE_NAME=$(echo $CHANGED_ZONE_FILE | sed -e 's,zones/db.,,')
 	echo -e "\t$ZONE_NAME"
 	cp $CHANGED_ZONE_FILE /etc/nsd/zones
-	echo "Flushing cache at recursives:"
+	echo -e "\tFlushing cache at recursives:"
 	for RECURSIVE in ${RECURSIVES[*]}; do
 	    output=`ssh $RECURSIVE unbound-control flush_zone $ZONE_NAME` || echo $output
-	    echo -e "\t$RECURSIVE: $output"
+	    echo -e "\t\t$RECURSIVE: $output"
 	done
-
     done
     output=`nsd-control reload`
     echo "Reloading nsd and notifying secondaries: $output"
