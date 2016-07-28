@@ -3,8 +3,10 @@
 # Fail the commit if any of the return codes is non-zero
 set -e
 
-# Ensure the config file isn't hosed
+# Ensure the config files aren't hosed
 nsd-checkconf nsd.conf.master
+nsd-checkconf nsd.conf.slave
+unbound-checkconf unbound.conf
 
 # Ditto for the zonefiles
 for file in $( ls zones/* ); do

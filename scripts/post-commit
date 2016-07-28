@@ -4,13 +4,14 @@ set -u
 set -e
 
 RECURSIVES=("172.16.1.102" "172.16.1.103" "172.16.1.104")
+MASTER="172.16.1.100"
 SECONDARIES=("172.16.1.101")
 
 # Update Master
 CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../nsd.conf.master | wc -l`
 if [ $CHANGED -gt 0 ]; then
-    cp nsd.conf.master /etc/nsd/nsd.conf
-    output=`nsd-control reconfig`
+    scp nsd.conf.master ${MASTER}:/etc/nsd/nsd.conf
+    output=`ssh ${MASTER} nsd-control reconfig`
     echo -e "nsd.conf.master has changed, reconfig'ing the master: \n$output"
 fi
 
@@ -30,15 +31,15 @@ if [ $CHANGED -gt 0 ]; then
     for CHANGED_ZONE_FILE in `git diff HEAD@{1} --stat --name-only -- $GIT_DIR/../zones/db.*`; do
 	ZONE_NAME=$(echo $CHANGED_ZONE_FILE | sed -e 's,zones/db.,,')
 	echo -e "\t$ZONE_NAME"
-	cp $CHANGED_ZONE_FILE /etc/nsd/zones
+	scp $CHANGED_ZONE_FILE ${MASTER}:/etc/nsd/zones
 	echo -e "\tFlushing cache at recursives:"
 	for RECURSIVE in ${RECURSIVES[*]}; do
 	    output=`ssh $RECURSIVE unbound-control flush_zone $ZONE_NAME` || echo $output
-	    echo -e "\t\t$RECURSIVE: $output"
+	    echo -e "\t\t${RECURSIVE}: $output"
 	done
     done
-    output=`nsd-control reload`
-    echo "Reloading nsd and notifying secondaries: $output"
+    output=`ssh ${MASTER} nsd-control reload`
+    echo "Reloading auth master and notifying secondaries: $output"
 fi
 
 CHANGED=`git diff HEAD@{1} --stat -- $GIT_DIR/../unbound.conf | wc -l`
@@ -50,4 +51,3 @@ if [ $CHANGED -gt 0 ]; then
 	output=`ssh qcadmin@${RECURSIVE} unbound-control reload` || echo $output
     done
 fi
-
