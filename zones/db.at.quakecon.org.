@@ -1,6 +1,6 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.quakecon.org. (
-                     2016080302         ; Serial
+                     2016080303         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
@@ -114,7 +114,7 @@ qc-core1	IN	A	172.23.3.7
 ; Tourney Network
 qltourney	IN	A	172.17.1.101
 qltourneygs	IN	A	172.17.1.102
-vent-tourney	IN	A	172.17.1.40
+vent-tourney	IN	A	172.17.2.15
 tourney     IN  A   172.17.2.10
 vent        IN  A   172.17.1.20
 
