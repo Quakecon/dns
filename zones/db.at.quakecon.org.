@@ -1,6 +1,6 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.quakecon.org. (
-                     2016080201         ; Serial
+                     2016080301         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
@@ -34,12 +34,12 @@ es7         IN  A   172.16.1.37
 es8         IN  A   172.16.1.38
 es9         IN  A   172.16.1.39
 es10        IN  A   172.16.1.40
-prox1		IN	A	172.16.1.60
-prox2		IN	A	172.16.1.61
-prox3		IN	A	172.16.1.62
-prox4		IN	A	172.16.1.63
-prox5		IN	A	172.16.1.64
-prox6		IN	A	172.16.1.65
+prox01		IN	A	172.16.1.60
+prox02		IN	A	172.16.1.61
+prox03		IN	A	172.16.1.62
+prox04		IN	A	172.16.1.63
+prox05		IN	A	172.16.1.64
+prox06		IN	A	172.16.1.65
 esx7		IN	A	172.16.1.66
 esx8		IN	A	172.16.1.67
 esx9		IN	A	172.16.1.68
