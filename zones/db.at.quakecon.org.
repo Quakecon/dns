@@ -1,6 +1,6 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.quakecon.org. (
-                     2016080301         ; Serial
+                     2016080302         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
@@ -101,6 +101,15 @@ win3 		IN	A	172.16.1.108
 wordpress	IN	A	172.16.1.141
 xroads1 	IN	A	172.16.15.2
 xroads2 	IN	A	172.16.15.3
+
+; Edge Network
+qcedge1		IN	A	172.23.3.1
+qcedge2		IN	A	172.23.3.2
+qcedge3		IN	A	172.23.3.3
+qcedge4		IN	A	172.23.3.4
+qcedge5		IN	A	172.23.3.5
+qcedge6		IN	A	172.23.3.6
+qc-core1	IN	A	172.23.3.7
 
 ; Tourney Network
 qltourney	IN	A	172.17.1.101

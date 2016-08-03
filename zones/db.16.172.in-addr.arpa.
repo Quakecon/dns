@@ -1,6 +1,6 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.at.quakecon.org. (
-                     2016080301         ; Serial
+                     2016080302         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
@@ -59,3 +59,19 @@ $TTL 1800
 67.1	IN	PTR	esx8.at.quakecon.org.
 68.1	IN	PTR	esx9.at.quakecon.org.
 10.1	IN	PTR	topofrack.at.quakecon.org.
+
+; PtP
+
+1.15	IN	PTR	qcedge1.qc-core1.at.quakecon.org.
+2.15	IN	PTR	qc-core1.qcedge1.at.quakecon.org.
+5.15	IN	PTR	qcedge2.qc-core1.at.quakecon.org.
+6.15	IN	PTR	qc-core1.qcedge2.at.quakecon.org.
+9.15	IN	PTR	qcedge3.qc-core1.at.quakecon.org.
+10.15	IN	PTR	qc-core1.qcedge3.at.quakecon.org.
+13.15	IN	PTR	qcedge4.qc-core1.at.quakecon.org.
+14.15	IN	PTR	qc-core1.qcedge4.at.quakecon.org.
+33.15	IN	PTR	qcedge5.qc-core1.at.quakecon.org.
+34.15	IN	PTR	qc-core1.qcedge5.at.quakecon.org.
+37.15	IN	PTR	qcedge6.qc-core1.at.quakecon.org.
+38.15	IN	PTR	qc-core1.qcedge6.at.quakecon.org.
+
