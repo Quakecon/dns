@@ -1,6 +1,6 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.quakecon.org. (
-                     2016080304         ; Serial
+                     2016080401         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
@@ -65,6 +65,12 @@ mysql1		IN	A	172.16.1.112
 nas1		IN	A	172.16.1.69
 nas2		IN	A	172.16.1.70
 nginxproxy	IN	A	172.16.1.92
+nginx01		IN	A	172.16.1.170
+nginx02		IN	A	172.16.1.171
+nginx03		IN	A	172.16.1.172
+nginx04		IN	A	172.16.1.173
+nginx05		IN	A	172.16.1.174
+nginx06		IN	A	172.16.1.175
 ns		IN 	A	172.16.1.100
 ns1  		IN	A	172.16.1.102
 ns2  		IN	A	172.16.1.103
@@ -85,7 +91,7 @@ reg2		IN	A	172.16.1.120
 source1		IN	A	172.16.1.135
 squid1		IN	A	172.23.6.10
 squid2		IN	A	172.23.6.11
-stoptestingspeed IN A 172.16.1.92
+stoptestingspeed IN	A	172.16.1.92
 thelinux	IN	A	172.16.1.71
 topofrack	IN	A	172.16.1.10
 triad       	IN  	A  	172.16.1.117

@@ -1,19 +1,19 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.at.quakecon.org. (
-                     2016080304         ; Serial
+                     2016080401         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
                           10800 )       ; Negative Cache TTL
 ;
-        IN  NS  core1.at.quakecon.org.
-	IN  NS  core2.at.quakecon.org.
+        IN	NS	core1.at.quakecon.org.
+	IN	NS	core2.at.quakecon.org.
 ;
-90.1    IN  PTR proxy1.at.quakecon.org.
-91.1    IN  PTR proxy2.at.quakecon.org.
-92.1    IN  PTR proxy3.at.quakecon.org.
-93.1    IN  PTR proxy4.at.quakecon.org.
-94.1    IN  PTR steamcache.at.quakecon.org.
+90.1    IN	PTR	proxy1.at.quakecon.org.
+91.1    IN	PTR	proxy2.at.quakecon.org.
+92.1    IN	PTR	proxy3.at.quakecon.org.
+93.1    IN	PTR	proxy4.at.quakecon.org.
+94.1    IN	PTR	steamcache.at.quakecon.org.
 100.1	IN	PTR	core1.at.quakecon.org.
 101.1	IN	PTR	core2.at.quakecon.org.
 102.1	IN	PTR	ns1.at.quakecon.org.
@@ -29,7 +29,7 @@ $TTL 1800
 112.1	IN	PTR	proxy1.at.quakecon.org.
 113.1	IN	PTR	portal.at.quakecon.org.
 115.1	IN	PTR	qcvs.at.quakecon.org.
-116.1   IN  PTR vent-byoc.at.quakecon.org.
+116.1   IN	PTR	vent-byoc.at.quakecon.org.
 117.1	IN	PTR	influx.at.quakecon.org.
 121.1	IN	PTR	ftp.at.quakecon.org.
 122.1	IN	PTR	reg1.at.quakecon.org.
@@ -45,11 +45,17 @@ $TTL 1800
 141.1	IN	PTR	wordpress.at.quakecon.org.
 150.1	IN	PTR	qlbyoc1.at.quakecon.org.
 151.1	IN	PTR	qlbyocgs.at.quakecon.org.
-160.1   IN  PTR csgo1.at.quakecon.org.
-161.1   IN  PTR csgo2.at.quakecon.org.
-162.1   IN  PTR csgo3.at.quakecon.org.
-163.1   IN  PTR csgo4.at.quakecon.org.
-1.1	    IN	PTR	qc-core1.at.quakecon.org.
+160.1   IN  	PTR	csgo1.at.quakecon.org.
+161.1   IN  	PTR	csgo2.at.quakecon.org.
+162.1   IN  	PTR	csgo3.at.quakecon.org.
+163.1   IN  	PTR	csgo4.at.quakecon.org.
+170.1	IN	PTR	nginx01.at.quakecon.org.
+171.1	IN	PTR	nginx02.at.quakecon.org.
+172.1	IN	PTR	nginx03.at.quakecon.org.
+173.1	IN	PTR	nginx04.at.quakecon.org.
+174.1	IN	PTR	nginx05.at.quakecon.org.
+175.1	IN	PTR	nginx06.at.quakecon.org.
+1.1	IN	PTR	qc-core1.at.quakecon.org.
 60.1	IN	PTR	prox01.at.quakecon.org.
 61.1	IN	PTR	prox02.at.quakecon.org.
 62.1	IN	PTR	prox03.at.quakecon.org.
