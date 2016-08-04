@@ -1,6 +1,6 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.at.quakecon.org. (
-                     2016080401         ; Serial
+                     2016080402         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
@@ -55,6 +55,24 @@ $TTL 1800
 173.1	IN	PTR	nginx04.at.quakecon.org.
 174.1	IN	PTR	nginx05.at.quakecon.org.
 175.1	IN	PTR	nginx06.at.quakecon.org.
+201.1   IN      PTR     byoctourney1.at.quakecon.org.
+202.1   IN      PTR     byoctourney2.at.quakecon.org.
+203.1   IN      PTR     byoctourney3.at.quakecon.org.
+204.1   IN      PTR     byoctourney4.at.quakecon.org.
+205.1   IN      PTR     byoctourney5.at.quakecon.org.
+206.1   IN      PTR     byoctourney6.at.quakecon.org.
+207.1   IN      PTR     byoctourney7.at.quakecon.org.
+208.1   IN      PTR     byoctourney8.at.quakecon.org.
+209.1   IN      PTR     byoctourney9.at.quakecon.org.
+210.1   IN      PTR     byoctourney10.at.quakecon.org.
+211.1   IN      PTR     byoctourney11.at.quakecon.org.
+212.1   IN      PTR     byoctourney12.at.quakecon.org.
+213.1   IN      PTR     byoctourney13.at.quakecon.org.
+214.1   IN      PTR     byoctourney14.at.quakecon.org.
+215.1   IN      PTR     byoctourney15.at.quakecon.org.
+216.1   IN      PTR     byoctourney16.at.quakecon.org.
+217.1   IN      PTR     byoctourney17.at.quakecon.org.
+218.1   IN      PTR     byoctourney18.at.quakecon.org.
 1.1	IN	PTR	qc-core1.at.quakecon.org.
 60.1	IN	PTR	prox01.at.quakecon.org.
 61.1	IN	PTR	prox02.at.quakecon.org.
