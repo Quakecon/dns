@@ -1,6 +1,6 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.at.quakecon.org. (
-                     2016080303         ; Serial
+                     2016080304         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
@@ -30,7 +30,7 @@ $TTL 1800
 113.1	IN	PTR	portal.at.quakecon.org.
 115.1	IN	PTR	qcvs.at.quakecon.org.
 116.1   IN  PTR vent-byoc.at.quakecon.org.
-118.1	IN	PTR	influx.at.quakecon.org.
+117.1	IN	PTR	influx.at.quakecon.org.
 121.1	IN	PTR	ftp.at.quakecon.org.
 122.1	IN	PTR	reg1.at.quakecon.org.
 124.1	IN	PTR	vent-byoc.at.quakecon.org.
