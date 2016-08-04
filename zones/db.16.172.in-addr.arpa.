@@ -1,6 +1,6 @@
 $TTL 1800
 @       IN      SOA     ns.at.quakecon.org. domain.at.quakecon.org. (
-                     2016080402         ; Serial
+                     2016080403         ; Serial
                            1200         ; Refresh
                             180         ; Retry
                         2419200         ; Expire
@@ -9,11 +9,12 @@ $TTL 1800
         IN	NS	core1.at.quakecon.org.
 	IN	NS	core2.at.quakecon.org.
 ;
-90.1    IN	PTR	proxy1.at.quakecon.org.
-91.1    IN	PTR	proxy2.at.quakecon.org.
-92.1    IN	PTR	proxy3.at.quakecon.org.
-93.1    IN	PTR	proxy4.at.quakecon.org.
-94.1    IN	PTR	steamcache.at.quakecon.org.
+90.1    IN      PTR     squid01.at.quakecon.org.
+91.1    IN      PTR     squid02.at.quakecon.org.
+92.1    IN      PTR     squid03.at.quakecon.org.
+93.1    IN      PTR     squid04.at.quakecon.org.
+94.1    IN      PTR     squid05.at.quakecon.org.
+95.1    IN      PTR     squid06.at.quakecon.org.
 100.1	IN	PTR	core1.at.quakecon.org.
 101.1	IN	PTR	core2.at.quakecon.org.
 102.1	IN	PTR	ns1.at.quakecon.org.
