@@ -180,3 +180,7 @@ zone:
 zone:
  	name: "22.172.in-addr.arpa."
 	include-pattern: "qcbase"
+
+zone:
+ 	name: "23.172.in-addr.arpa."
+	include-pattern: "qcbase"

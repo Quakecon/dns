@@ -48,6 +48,7 @@ if [ $CHANGED -gt 0 ]; then
     for RECURSIVE in ${RECURSIVES[*]}; do
 	echo -e "\t$RECURSIVE"
 	output=`scp unbound.conf qcadmin@${RECURSIVE}:/etc/unbound/unbound.conf` || echo $output
-	output=`ssh qcadmin@${RECURSIVE} unbound-control reload` || echo $output
+	output=`ssh qcadmin@${RECURSIVE} sudo systemctl stop unbound.service` || echo $output
+	output=`ssh qcadmin@${RECURSIVE} sudo systemctl start unbound.service` || echo $output
     done
 fi
